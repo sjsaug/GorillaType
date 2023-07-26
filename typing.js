@@ -5,10 +5,13 @@ function randWord(){
     const randomIndex = Math.ceil(Math.random() * wordsCount);
     return words[randomIndex];
 }
+function formatWord(word){
+    return `<div class="word">${word}</div>`;
+}
 function newGame(){
     document.getElementById("words").innerHTML = "";
     for(let i = 0; i < 200; i++){
-        document.getElementById("words").innerHTML += randWord() + " ";
+        document.getElementById("words").innerHTML += formatWord(randWord());
     }
 }
 newGame();

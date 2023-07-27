@@ -32,6 +32,8 @@ document.getElementById("game").addEventListener("keydown", ev => {
     const expectedLetter = currentLetter?.innerHTML || " ";
     const isLetter = key.length === 1 && key !== " ";
     const isSpace = key === " ";
+    const isBackspace = key === "Backspace";
+    const isFirstLetter = currentLetter === currentWord.firstChild;
 
 
     console.log(key, expectedLetter);
@@ -65,6 +67,15 @@ document.getElementById("game").addEventListener("keydown", ev => {
             removeClass(currentLetter, "current");
         }
         addClass(currentWord.nextSibling.firstChild, "current");
+    }
+
+    if(isBackspace){
+        if (currentLetter && isFirstLetter) {
+            removeClass(currentWord, "current");
+            addClass(currentWord.previousSibling, "current");
+            removeClass(currentLetter, "current");
+            addClass(currentWord.previousSibling.lastChild, "current");
+        }
     }
 })
 

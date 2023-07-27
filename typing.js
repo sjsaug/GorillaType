@@ -91,8 +91,10 @@ document.getElementById("game").addEventListener("keydown", ev => {
         }
     }
 
-    if (currentWord.getBoundingClientRect().top > 200){
-        alert("move")
+    if (currentWord.getBoundingClientRect().top > 250){
+        const words = document.getElementById("words");
+        const margin = parseInt(words.style.marginTop || "0px");
+        words.style.marginTop = margin - 35 + "px";
     }
 
 })

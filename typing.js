@@ -29,7 +29,8 @@ function newGame(){
 }
 
 function gameOver(){
-    
+    clearInterval(window.timer);
+    addClass(document.getElementById("game"), "game-over")
 }
 
 document.getElementById("game").addEventListener("keydown", ev => {
@@ -41,6 +42,10 @@ document.getElementById("game").addEventListener("keydown", ev => {
     const isSpace = key === " ";
     const isBackspace = key === "Backspace";
     const isFirstLetter = currentLetter === currentWord.firstChild;
+
+    if (document.querySelector("#game.game-over")){
+        return;
+    }
 
 
     console.log(key, expectedLetter);

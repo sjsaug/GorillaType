@@ -14,4 +14,9 @@ function newGame(){
         document.getElementById("words").innerHTML += formatWord(randWord());
     }
 }
+
+document.getElementById("game").addEventListener("keyup", ev => {
+    
+));
+
 newGame();

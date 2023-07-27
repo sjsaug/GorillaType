@@ -26,6 +26,8 @@ function newGame(){
     }
     addClass(document.querySelector(".word"), "current");
     addClass(document.querySelector(".letter"), "current");
+    document.getElementById("info").innerHTML = gameTime / 1000;
+    window.timer = null;
 }
 
 function getWPM() {
@@ -45,8 +47,7 @@ function getWPM() {
 function gameOver(){
     clearInterval(window.timer);
     addClass(document.getElementById("game"), "game-over")
-    const result = getWPM();
-    document.getElementById("info").innerHTML = `Timer ran out. Your WPM was ${result}`;
+    document.getElementById("info").innerHTML = `Your WPM was ${getWPM()}`;
 }
 
 document.getElementById("game").addEventListener("keydown", ev => {
@@ -143,5 +144,10 @@ document.getElementById("game").addEventListener("keydown", ev => {
     }
 
 })
+
+    document.getElementById("clickableLogo").addEventListener("click", () => {
+        gameOver();
+        newGame();
+    });   
 
 newGame();

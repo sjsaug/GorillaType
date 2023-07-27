@@ -25,10 +25,11 @@ function newGame(){
     addClass(document.querySelector(".letter"), "current");
 }
 
-document.getElementById("game").addEventListener("keyup", ev => {
+document.getElementById("game").addEventListener("keydown", ev => {
     const key = ev.key;
+    const currentWord = document.querySelector(".word.current");
     const currentLetter = document.querySelector(".letter.current");
-    const expectedLetter = currentLetter.innerHTML;
+    const expectedLetter = currentLetter?.innerHTML || " ";
     const isLetter = key.length === 1 && key !== " ";
     const isSpace = key === " ";
 
@@ -39,14 +40,31 @@ document.getElementById("game").addEventListener("keyup", ev => {
         if (currentLetter) {
             addClass(currentLetter, key === expectedLetter ? "correct" : "incorrect");
             removeClass(currentLetter, "current");
+            if (currentLetter.nextSibling){
             addClass(currentLetter.nextSibling, "current");
+            }
+        }   else{
+            const incorrectLetter = document.createElement("span");
+            incorrectLetter.innerHTML = key;
+            incorrectLetter.className = "letter incorrect extra";
+            currentWord.appendChild(incorrectLetter);
         }
     }
 
     if(isSpace){
         if (expectedLetter !== " "){
             const lettersToInvalidate = [...document.querySelectorAll(".word.current .letter:not(.correct)")];
+            lettersToInvalidate.forEach(letter => {
+                addClass(letter, "incorrect");
+            });
         }
+        
+        removeClass(currentWord, "current");
+        addClass(currentWord.nextSibling, "current");
+        if (currentLetter) {
+            removeClass(currentLetter, "current");
+        }
+        addClass(currentWord.nextSibling.firstChild, "current");
     }
 })
 

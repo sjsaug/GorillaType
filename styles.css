@@ -79,3 +79,10 @@ div.word{
 .letter.incorrect{
     color: #f55;
 }
+#game.game-over #words{
+    opacity: .5;
+    filter: blur(0px);
+}
+#game.game-over #focus-error{
+    display: none;
+}

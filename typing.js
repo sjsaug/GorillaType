@@ -28,9 +28,25 @@ function newGame(){
     addClass(document.querySelector(".letter"), "current");
 }
 
+function getWPM(){
+    const words = [...document.querySelectorAll(".word")];
+    const lastTypedWord = document.querySelector(".word.current");
+    const lastTypedWordIndex = words.indexOf(lastTypedWord) +1;
+    const typedWords = words.slice(0, lastTypedWordIndex);
+    const correctWords = typedWords.filter(word => {
+        const letters = [...word.children];
+        const incorrectLetters = letters.filter(letter => letter.className.includes("incorrect"));
+        const correctLetters = letters.filter(letter => letter.className.includes("correct"));
+        return incorrectLetters.length === 0 && correctLetters.length === letters.length;
+    });
+    return correctWords.lenght / gameTime * 60000;
+}
+
 function gameOver(){
     clearInterval(window.timer);
     addClass(document.getElementById("game"), "game-over")
+    const result = getWPM();
+    document.getElementById("info").innerHTML = `Timer ran out. Your WPM was ${result}`;
 }
 
 document.getElementById("game").addEventListener("keydown", ev => {
@@ -61,6 +77,7 @@ document.getElementById("game").addEventListener("keydown", ev => {
             const timeLeft_s = gameTime / 1000 - timePassed_s;
             if (timeLeft_s <= 0){
                 gameOver();
+                return;
             }
             document.getElementById("info").innerHTML = timeLeft_s;
         }, 1000)

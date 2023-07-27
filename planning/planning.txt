@@ -1,0 +1,1 @@
+- Add settings to change colors and preferences

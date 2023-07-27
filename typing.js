@@ -59,6 +59,7 @@ document.getElementById("game").addEventListener("keydown", ev => {
     const isSpace = key === " ";
     const isBackspace = key === "Backspace";
     const isFirstLetter = currentLetter === currentWord.firstChild;
+    const isExtra = document.querySelector(".letter.incorrect.extra");
 
     if (document.querySelector("#game.game-over")){
         return;
@@ -134,6 +135,9 @@ document.getElementById("game").addEventListener("keydown", ev => {
             addClass(currentWord.lastChild, "current");
             removeClass(currentWord.lastChild, "incorrect");
             removeClass(currentWord.lastChild, "correct");
+        }
+        if(isExtra){
+            currentWord.removeChild(isExtra)
         }
     }
 

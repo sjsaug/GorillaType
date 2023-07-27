@@ -2,6 +2,7 @@ const words = "in one good real one not school set they state high life consider
 const wordsCount = words.length;
 const gameTime = 30*1000;
 window.timer = null;
+window.gameStart = null;
 
 function addClass(el,name){
     el.className += " " + name;
@@ -27,6 +28,10 @@ function newGame(){
     addClass(document.querySelector(".letter"), "current");
 }
 
+function gameOver(){
+    
+}
+
 document.getElementById("game").addEventListener("keydown", ev => {
     const key = ev.key;
     const currentWord = document.querySelector(".word.current");
@@ -41,7 +46,19 @@ document.getElementById("game").addEventListener("keydown", ev => {
     console.log(key, expectedLetter);
 
     if (window.timer === null && isLetter){
-        alert("Game started");
+        window.timer = setInterval(() => {
+            if (window.gameStart === null){
+                window.gameStart = (new Date()).getTime();
+            }
+            const now = (new Date()).getTime();
+            const timePassed_ms = now - window.gameStart;
+            const timePassed_s = Math.round(timePassed_ms / 1000);
+            const timeLeft_s = gameTime / 1000 - timePassed_s;
+            if (timeLeft_s <= 0){
+                gameOver();
+            }
+            document.getElementById("info").innerHTML = timeLeft_s;
+        }, 1000)
     }
 
     if(isLetter){

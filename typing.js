@@ -36,7 +36,7 @@ document.getElementById("game").addEventListener("keyup", ev => {
 
     if(isLetter){
         if (currentLetter) {
-            alert(key === expectedLetter ? "ok" : "wrong");
+            addClass(currentLetter, key === expectedLetter ? "correct" : "incorrect");
         }
     }
 });

@@ -49,6 +49,9 @@ div#game{
     overflow: hidden;
     position:relative;
 }
+div#game:focus{
+    outline: none;
+}
 #words{
     filter: blur(5px);
     color: var(--textSecondary);
@@ -75,4 +78,11 @@ div.word{
 }
 .letter.incorrect{
     color: #f55;
+}
+#game.game-over #words{
+    opacity: .5;
+    filter: blur(0px);
+}
+#game.game-over #focus-error{
+    display: none;
 }

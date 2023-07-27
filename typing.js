@@ -90,6 +90,11 @@ document.getElementById("game").addEventListener("keydown", ev => {
             removeClass(currentWord.lastChild, "correct");
         }
     }
+
+    if (currentWord.getBoundingClientRect().top > 200){
+        alert("move")
+    }
+
 })
 
 newGame();

@@ -1,7 +1,7 @@
 # GorillaType
 A remake of MonkeyType, since I use it so much <br />
 
-Test it out here! https://gorillatype.live/ <br />
+Test it out here! https://gorillatype.live/ <br /> (domain expires on 27/07/2024)
 
 Codepen : https://codepen.io/sjsaug/full/NWEOQwd
 
